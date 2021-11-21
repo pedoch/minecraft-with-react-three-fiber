@@ -1,7 +1,7 @@
 import React from "react";
 import { Canvas } from "react-three-fiber";
-import { Sky } from "@react-three/drei";
-import { Physics } from "@react-three/cannon";
+import { Sky } from "drei";
+import { Physics } from "use-cannon";
 
 import { Ground } from "./components/Ground";
 import { Player } from "./components/Player";

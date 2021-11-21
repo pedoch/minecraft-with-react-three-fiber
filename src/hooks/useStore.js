@@ -18,9 +18,9 @@ export const useStore = create((set) => ({
     ),
   texture: "wood",
   setTexture: (texture) =>
-    set((state) => {
-      texture;
-    }),
+    set((state) => ({
+      texture,
+    })),
   saveWorld: () =>
     set((state) => {
       setLocalStorage("world", state.cubes);

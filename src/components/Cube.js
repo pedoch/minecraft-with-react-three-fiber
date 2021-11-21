@@ -1,5 +1,5 @@
 import React from "react";
-import { useBox } from "@react-three/cannon";
+import { useBox } from "use-cannon";
 import * as textures from "../textures";
 
 export const Cube = ({ position, type, ...props }) => {
@@ -8,10 +8,10 @@ export const Cube = ({ position, type, ...props }) => {
     position,
     ...props,
   }));
-  const skinArr = [1, 2, 3, 4, 5, 6];
+  // const skinArr = [1, 2, 3, 4, 5, 6];
   return (
     <mesh castShadow ref={ref}>
-      {skinArr.map((_, index) => (
+      {[...Array(6)].map((_, index) => (
         <meshStandardMaterial
           attachArray="material"
           map={textures[type]}
