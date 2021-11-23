@@ -11,13 +11,13 @@ import { Hud } from "./components/Hud";
 function App() {
   return (
     <Canvas shadowMap sRGB>
-      <Sky sunPosition={[100, 20, 100]} />
+      <Sky distance={[90000]} sunPosition={[300, 100, 300]} />
       <ambientLight intensity={0.25} />
       <pointLight castShadow intensity={0.7} position={[100, 100, 100]} />
       <Hud position={[0, 0, -2]} />
       <Physics gravity={[0, -30, 0]}>
         <Ground position={[0, 0.5, 0]} />
-        <Player position={[0, 3, 10]} />
+        <Player position={[120, 3, 70]} />
         <Cubes />
       </Physics>
     </Canvas>

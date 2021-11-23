@@ -1,26 +1,28 @@
-import React, { useEffect, useRef } from 'react';
-import { useSphere } from 'use-cannon';
-import { useThree, useFrame } from 'react-three-fiber';
-import { FPVControls } from './FPVControls';
-import { useKeyboardControls } from '../hooks/useKeyboardControls';
-import { Vector3 } from 'three';
+import React, { useEffect, useRef } from "react";
+import { useSphere } from "use-cannon";
+import { useThree, useFrame } from "react-three-fiber";
+import { FPVControls } from "./FPVControls";
+import { useKeyboardControls } from "../hooks/useKeyboardControls";
+import { Vector3 } from "three";
 
-const SPEED = 6;
+const SPEED = 10;
 
 export const Player = (props) => {
+  const deg2rad = (degrees) => degrees * (Math.PI / 180);
+
   const { camera } = useThree();
-  const {
-    moveForward,
-    moveBackward,
-    moveLeft,
-    moveRight,
-    jump,
-  } = useKeyboardControls();
+
+  const { moveForward, moveBackward, moveLeft, moveRight, jump } =
+    useKeyboardControls();
   const [ref, api] = useSphere(() => ({
     mass: 1,
-    type: 'Dynamic',
+    type: "Dynamic",
     ...props,
   }));
+
+  useEffect(() => {
+    camera.rotateY(deg2rad(180));
+  }, []);
 
   const velocity = useRef([0, 0, 0]);
   useEffect(() => {
@@ -34,12 +36,12 @@ export const Player = (props) => {
     const frontVector = new Vector3(
       0,
       0,
-      (moveBackward ? 1 : 0) - (moveForward ? 1 : 0),
+      (moveBackward ? 1 : 0) - (moveForward ? 1 : 0)
     );
     const sideVector = new Vector3(
       (moveLeft ? 1 : 0) - (moveRight ? 1 : 0),
       0,
-      0,
+      0
     );
 
     direction
