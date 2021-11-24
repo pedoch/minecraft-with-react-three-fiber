@@ -1,6 +1,6 @@
 import create from "zustand";
 import { nanoid } from "nanoid";
-import { MyIntro } from "../presets/intro";
+import { MyIntro, MyOccupation } from "../presets";
 
 const getLocalStorage = (key) => JSON.parse(window.localStorage.getItem(key));
 const setLocalStorage = (key, value) =>
@@ -8,7 +8,14 @@ const setLocalStorage = (key, value) =>
 
 export const useStore = create((set) => ({
   texture: "dirt",
-  cubes: [...MyIntro()],
+  cubes: [...MyIntro(), ...MyOccupation()],
+  // cubes: [...MyOccupation()],
+  // cubes: [
+  //   {
+  //     pos: [88, 1, 141],
+  //     texture: "dirt",
+  //   },
+  // ],
   addCube: (x, y, z) =>
     set((state) => ({
       cubes: [
